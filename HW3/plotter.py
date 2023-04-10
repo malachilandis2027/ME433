@@ -42,9 +42,7 @@ class Plotter:
 
         t = lastt + 1
         self.tdata.append(t)
-        print(t)
         self.ydata.append(y)
-        print(y)
         self.line.set_data(self.tdata, self.ydata)
         return self.line,
 
@@ -72,8 +70,8 @@ ser = serial.Serial("/dev/ttyUSB0", 230400, timeout=120)
 fig, ax = plt.subplots()
 plotter = Plotter(ax)
 
-ani = animation.FuncAnimation(fig, plotter.update, serial_getter, interval=1,
-                              blit=True, cache_frame_data=False)
+# ani = animation.FuncAnimation(fig, plotter.update, serial_getter, interval=1,blit=True, cache_frame_data=False)
+ani = animation.FuncAnimation(fig, plotter.update, serial_getter, interval=1,blit=True)
 
 ax.set_xlabel("Samples")
 ax.set_ylabel("Data")
