@@ -1746,6 +1746,12 @@
     (uuid ffe62920-6789-472a-819b-f4ce224c8de7)
   )
 
+  (text "2 inch square board\nRemember the capacitors that are supposed to be close to the PIC\nCareful not to orphan grounds\n"
+    (at 39.37 151.13 0)
+    (effects (font (size 1.27 1.27)) (justify left bottom))
+    (uuid 4b9eaad8-0357-4beb-a214-0bd056cf8592)
+  )
+
   (global_label "V_{IN}" (shape passive) (at 207.01 127 0) (fields_autoplaced)
     (effects (font (size 1.27 1.27)) (justify left))
     (uuid 018770ca-3753-44c3-b5a1-5da1d1a93782)
