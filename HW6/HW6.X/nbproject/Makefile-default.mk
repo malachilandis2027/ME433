@@ -51,17 +51,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=../nu32dip.c ../template.c
+SOURCEFILES_QUOTED_IF_SPACED=../nu32dip.c ../template.c ../i2c_master_noint.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/_ext/1472/nu32dip.o ${OBJECTDIR}/_ext/1472/template.o
-POSSIBLE_DEPFILES=${OBJECTDIR}/_ext/1472/nu32dip.o.d ${OBJECTDIR}/_ext/1472/template.o.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/_ext/1472/nu32dip.o ${OBJECTDIR}/_ext/1472/template.o ${OBJECTDIR}/_ext/1472/i2c_master_noint.o
+POSSIBLE_DEPFILES=${OBJECTDIR}/_ext/1472/nu32dip.o.d ${OBJECTDIR}/_ext/1472/template.o.d ${OBJECTDIR}/_ext/1472/i2c_master_noint.o.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/_ext/1472/nu32dip.o ${OBJECTDIR}/_ext/1472/template.o
+OBJECTFILES=${OBJECTDIR}/_ext/1472/nu32dip.o ${OBJECTDIR}/_ext/1472/template.o ${OBJECTDIR}/_ext/1472/i2c_master_noint.o
 
 # Source Files
-SOURCEFILES=../nu32dip.c ../template.c
+SOURCEFILES=../nu32dip.c ../template.c ../i2c_master_noint.c
 
 
 
@@ -113,6 +113,12 @@ ${OBJECTDIR}/_ext/1472/template.o: ../template.c  .generated_files/flags/default
 	@${RM} ${OBJECTDIR}/_ext/1472/template.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -fno-common -MP -MMD -MF "${OBJECTDIR}/_ext/1472/template.o.d" -o ${OBJECTDIR}/_ext/1472/template.o ../template.c    -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
+${OBJECTDIR}/_ext/1472/i2c_master_noint.o: ../i2c_master_noint.c  .generated_files/flags/default/876498b46e978645a24a0f62cfded3ca6c4ea8d6 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}/_ext/1472" 
+	@${RM} ${OBJECTDIR}/_ext/1472/i2c_master_noint.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1472/i2c_master_noint.o 
+	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -fno-common -MP -MMD -MF "${OBJECTDIR}/_ext/1472/i2c_master_noint.o.d" -o ${OBJECTDIR}/_ext/1472/i2c_master_noint.o ../i2c_master_noint.c    -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
+	
 else
 ${OBJECTDIR}/_ext/1472/nu32dip.o: ../nu32dip.c  .generated_files/flags/default/dc14391739d80cb48ac2456e602ffb4c53b7ba98 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/_ext/1472" 
@@ -125,6 +131,12 @@ ${OBJECTDIR}/_ext/1472/template.o: ../template.c  .generated_files/flags/default
 	@${RM} ${OBJECTDIR}/_ext/1472/template.o.d 
 	@${RM} ${OBJECTDIR}/_ext/1472/template.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -fno-common -MP -MMD -MF "${OBJECTDIR}/_ext/1472/template.o.d" -o ${OBJECTDIR}/_ext/1472/template.o ../template.c    -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
+	
+${OBJECTDIR}/_ext/1472/i2c_master_noint.o: ../i2c_master_noint.c  .generated_files/flags/default/acfeb42c5d8252cff5d47bb8e24e74973814d8d .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}/_ext/1472" 
+	@${RM} ${OBJECTDIR}/_ext/1472/i2c_master_noint.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1472/i2c_master_noint.o 
+	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -fno-common -MP -MMD -MF "${OBJECTDIR}/_ext/1472/i2c_master_noint.o.d" -o ${OBJECTDIR}/_ext/1472/i2c_master_noint.o ../i2c_master_noint.c    -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
 endif
 

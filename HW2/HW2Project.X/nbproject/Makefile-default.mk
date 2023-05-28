@@ -19,7 +19,7 @@ endif
 endif
 
 # Environment
-MKDIR=mkdir -p
+MKDIR=gnumkdir -p
 RM=rm -f 
 MV=mv 
 CP=cp 
@@ -79,15 +79,15 @@ LDLIBSOPTIONS=
 FIXDEPS=fixDeps
 
 # The following macros may be used in the pre and post step lines
-_/_=/
-ShExtension=.sh
+_/_=\\
+ShExtension=.bat
 Device=PIC32MX170F256B
-ProjectDir=/home/malachi/Github/ME433/HW2/HW2Project.X
+ProjectDir="C:\Users\malac\Documents\GitHub\ME433\HW2\HW2Project.X"
 ProjectName=HW2Project
 ConfName=default
-ImagePath=dist/default/${IMAGE_TYPE}/HW2Project.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}
-ImageDir=dist/default/${IMAGE_TYPE}
-ImageName=HW2Project.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}
+ImagePath="dist\default\${IMAGE_TYPE}\HW2Project.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}"
+ImageDir="dist\default\${IMAGE_TYPE}"
+ImageName="HW2Project.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}"
 ifeq ($(TYPE_IMAGE), DEBUG_RUN)
 IsDebug="true"
 else
@@ -105,7 +105,7 @@ endif
 	@echo "--------------------------------------"
 
 MP_PROCESSOR_OPTION=32MX170F256B
-MP_LINKER_FILE_OPTION=,--script="../NU32DIPbootloaded.ld"
+MP_LINKER_FILE_OPTION=,--script="..\NU32DIPbootloaded.ld"
 # ------------------------------------------------------------------------------------
 # Rules for buildStep: assemble
 ifeq ($(TYPE_IMAGE), DEBUG_RUN)
@@ -121,26 +121,26 @@ endif
 # ------------------------------------------------------------------------------------
 # Rules for buildStep: compile
 ifeq ($(TYPE_IMAGE), DEBUG_RUN)
-${OBJECTDIR}/_ext/1472/nu32dip.o: ../nu32dip.c  .generated_files/flags/default/71af80e6886762364e5e33ce5a41d1fdc70159b4 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/_ext/1472/nu32dip.o: ../nu32dip.c  .generated_files/flags/default/4688dcdc5463ac25390732a23f90646dd2595c .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/_ext/1472" 
 	@${RM} ${OBJECTDIR}/_ext/1472/nu32dip.o.d 
 	@${RM} ${OBJECTDIR}/_ext/1472/nu32dip.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -fno-common -MP -MMD -MF "${OBJECTDIR}/_ext/1472/nu32dip.o.d" -o ${OBJECTDIR}/_ext/1472/nu32dip.o ../nu32dip.c    -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/_ext/1472/template.o: ../template.c  .generated_files/flags/default/d45b8a4314b2c9c30c88bb4e58e40b3098610bec .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/_ext/1472/template.o: ../template.c  .generated_files/flags/default/29a37422cd5f7c8875635330540287643bdabf8f .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/_ext/1472" 
 	@${RM} ${OBJECTDIR}/_ext/1472/template.o.d 
 	@${RM} ${OBJECTDIR}/_ext/1472/template.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -fno-common -MP -MMD -MF "${OBJECTDIR}/_ext/1472/template.o.d" -o ${OBJECTDIR}/_ext/1472/template.o ../template.c    -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
 else
-${OBJECTDIR}/_ext/1472/nu32dip.o: ../nu32dip.c  .generated_files/flags/default/bb8b157013f20f5fc70cfce8af187aaeed3a5579 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/_ext/1472/nu32dip.o: ../nu32dip.c  .generated_files/flags/default/a1ab1122e20f34d9939c8ae56f23b74d8060bea5 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/_ext/1472" 
 	@${RM} ${OBJECTDIR}/_ext/1472/nu32dip.o.d 
 	@${RM} ${OBJECTDIR}/_ext/1472/nu32dip.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -fno-common -MP -MMD -MF "${OBJECTDIR}/_ext/1472/nu32dip.o.d" -o ${OBJECTDIR}/_ext/1472/nu32dip.o ../nu32dip.c    -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/_ext/1472/template.o: ../template.c  .generated_files/flags/default/c90949aa2763e21f0d59430108811073628849b2 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/_ext/1472/template.o: ../template.c  .generated_files/flags/default/cc2d44af3ef5282abda0083e61e22fa1589769b0 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/_ext/1472" 
 	@${RM} ${OBJECTDIR}/_ext/1472/template.o.d 
 	@${RM} ${OBJECTDIR}/_ext/1472/template.o 
@@ -165,7 +165,7 @@ else
 ${DISTDIR}/HW2Project.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}: ${OBJECTFILES}  nbproject/Makefile-${CND_CONF}.mk   ../NU32DIPbootloaded.ld
 	@${MKDIR} ${DISTDIR} 
 	${MP_CC} $(MP_EXTRA_LD_PRE)  -mprocessor=$(MP_PROCESSOR_OPTION)  -o ${DISTDIR}/HW2Project.X.${IMAGE_TYPE}.${DEBUGGABLE_SUFFIX} ${OBJECTFILES_QUOTED_IF_SPACED}          -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -Wl,--defsym=__MPLAB_BUILD=1$(MP_EXTRA_LD_POST)$(MP_LINKER_FILE_OPTION),--no-code-in-dinit,--no-dinit-in-serial-mem,-Map="${DISTDIR}/${PROJECTNAME}.${IMAGE_TYPE}.map",--memorysummary,${DISTDIR}/memoryfile.xml -mdfp="${DFP_DIR}"
-	${MP_CC_DIR}/xc32-bin2hex ${DISTDIR}/HW2Project.X.${IMAGE_TYPE}.${DEBUGGABLE_SUFFIX} 
+	${MP_CC_DIR}\\xc32-bin2hex ${DISTDIR}/HW2Project.X.${IMAGE_TYPE}.${DEBUGGABLE_SUFFIX} 
 endif
 
 
@@ -184,7 +184,7 @@ endif
 # Enable dependency checking
 .dep.inc: .depcheck-impl
 
-DEPFILES=$(shell "${PATH_TO_IDE_BIN}"mplabwildcard ${POSSIBLE_DEPFILES})
+DEPFILES=$(shell mplabwildcard ${POSSIBLE_DEPFILES})
 ifneq (${DEPFILES},)
 include ${DEPFILES}
 endif
