@@ -77,7 +77,7 @@ void ssd1306_drawPixel(unsigned char x, unsigned char y, unsigned char color) {
     }
 
     if (color == 1) {
-        [x + (y / 8)*128] |= (1 << (y & 7));
+        ssd1306_buffer[x + (y / 8)*128] |= (1 << (y & 7));
     } else {
         ssd1306_buffer[x + (y / 8)*128] &= ~(1 << (y & 7));
     }

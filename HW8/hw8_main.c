@@ -1,6 +1,8 @@
 #include "nu32dip.h" // constants, functions for startup and UART
 #include "i2c_master_noint.h"
 #include "mpu6050.h"
+#include "ssd1306.h"
+#include "font.h"
 #include <stdio.h>
 
 void blink(int, int); // blink the LEDs function
@@ -30,27 +32,32 @@ int main(void) {
         while(1);
     }
 	// wait to print until you get a newline
-    char m_in[100];
-    NU32DIP_ReadUART1(m_in,100);
+//    char m_in[100];
+//    NU32DIP_ReadUART1(m_in,100);
 
     unsigned long time = 1;
+    
     while (1) {
         _CP0_SET_COUNT(0);
-        blink(1, 5);
+//        blink(1, 5);
 
         // read IMU
         burst_read_mpu6050(data);
 		// convert data
         accelZ = conv_zXL(data);
         
-        sprintf(message,"Z Accel: %f",accelZ);
-        drawString(message,16,10,10);
-        sprintf(message,"FPS: %f",1/float(time));
-        drawString(message,12,10,1);
-        
-        // sprintf(message,"FPS: %f",1/time);
-        // NU32DIP_WriteUART1(message);
+        ssd1306_clear();
+        sprintf(message,"Z Accel: %1.3f",accelZ);
+        drawString(message,13,2,12);
+        sprintf(message,"FPS: %f3.1",(1/((float)time/24000000)));
+        drawString(message,9,2,2);
+        ssd1306_update();
+//        drawChar('!',10,10);
+//        ssd1306_update();
+//        sprintf(message,"FPS: %f\r\n",(1/((float)time/24000000)));
+//        NU32DIP_WriteUART1(message);
         time = _CP0_GET_COUNT();
+        // while (_CP0_GET_COUNT()<12000000) {} // 48000000 = 1s
     }
 }
 
@@ -80,20 +87,27 @@ void blink(int iterations, int time_ms) {
 void drawChar(unsigned char letter, unsigned char x, unsigned char y) {
     unsigned char columnHex; // Char used to store the hex value of a column
     unsigned char color; // Char used to store the pixel's color (0 or 1)
+//    char message[100];
     for (int i = 0; i < 5; i++){ // Loop over each element of the list (columns)
         columnHex = ASCII[letter-0x20][i];
-        for (int j = 7; j > -1; j--) { // Looping over the row
+//        sprintf(message,"Current column hex: %x\r\n",columnHex);
+//        NU32DIP_WriteUART1(message);
+//        NU32DIP_WriteUART1("Current color: ");
+        for (int j = 7; j >= 0; j--) { // Looping over the row
             color = 0b00000001 & columnHex; // Get the value of the LSB of columnHex
-            ssd1306_drawPixel(x+i,y+j,color); // Draw the pixel
+//            sprintf(message,"%i",color);
+//            NU32DIP_WriteUART1(message);
+            ssd1306_drawPixel(x+i,32-y-j,color); // Draw the pixel
             columnHex = columnHex>>1; // Right shift by 1 to access the next pixel
         }
+//        NU32DIP_WriteUART1("\r\n");
     }
 }
 
 void drawString(unsigned char* message, unsigned int length, unsigned char x, unsigned char y) {
-    ssd1306_clear();
+    // ssd1306_clear();
     for (int i = 0; i < length; i++) {
         drawChar(message[i],x+5*i,y);
     }
-    ssd1306_update();
+    // ssd1306_update();
 }
