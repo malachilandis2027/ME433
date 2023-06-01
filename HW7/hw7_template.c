@@ -23,7 +23,7 @@ int main(void) {
 	// read whoami
     uint8_t who = whoami();
 	// print whoami
-    char message[100];
+    char message[150];
     sprintf(message,"%i",who);
     NU32DIP_WriteUART1(message);
 	// if whoami is not 0x68, stuck in loop with LEDs on
@@ -53,7 +53,7 @@ int main(void) {
         temp = conv_temp(data);
         
         // print out the data
-        sprintf(message,"%f,%f,%f,%f,%f,%f,%f",accelX,accelY,accelZ,gyroX,gyroY,gyroZ,temp);
+        sprintf(message,"%f,%f,%f,%f,%f,%f,%f\r\n",accelX,accelY,accelZ,gyroX,gyroY,gyroZ,temp);
         NU32DIP_WriteUART1(message);
         
         while (_CP0_GET_COUNT() < 48000000 / 2 / 100) {

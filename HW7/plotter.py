@@ -30,7 +30,7 @@ class Plotter:
         self.line = Line2D(self.tdata, self.ydata)  
 
         self.ax.add_line(self.line)
-        self.ax.set_ylim(-1, 1)
+        self.ax.set_ylim(-1.5, 1.5)
         self.ax.set_xlim(0, self.maxt)
 
     def update(self, y):
@@ -54,12 +54,16 @@ def serial_getter():
     while True:
         for i in range(5):
             line = ser.readline()
+            line = str(line.decode("utf-8"))
+            vals = line.split(',')
+            print(vals[0])
             try:
-                line = float(line)
+                val = float(vals[0])
             except ValueError:
+                val = 0
                 continue
             break
-        yield line
+        yield val
 
 #if len(sys.argv) < 2:
 #    raise Exception("Ruh roh..no port specified!")
