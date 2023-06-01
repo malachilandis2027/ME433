@@ -23,7 +23,7 @@ void setReg(unsigned char adr, unsigned char reg, unsigned char val) {
 unsigned char readReg(unsigned char adr, unsigned char reg) {
     // Reads from the register on the addressed device
     unsigned char writeAdr = adr<<1;
-    unsigned char readAdr = writeAdr&0b00000001;
+    unsigned char readAdr = writeAdr|0b00000001;
     i2c_master_start(); // Send start bit
     i2c_master_send(writeAdr); // Send the address of the device with the write bit set
     i2c_master_send(reg); // Send the register to be updated
@@ -37,6 +37,7 @@ unsigned char readReg(unsigned char adr, unsigned char reg) {
 
 int main(void) {
   NU32DIP_Startup(); // cache on, interrupts on, LED/button init, UART init
+  i2c_master_setup();
   setReg(MCP23008, IODIR, 0b01111111); // First set GP7 to output, GP0 to input
   
   unsigned char readResult; // Declare variable used to store the result of reading the inputs
@@ -45,10 +46,10 @@ int main(void) {
   while (1) { // Endless while to constantly check the button (GP0) and update the LED (GP7) to match
       readResult = readReg(MCP23008, GPIO);
       if (readResult&0b00000001 == 0b00000001) { // Check to see if GP0's bit is high
-          setReg(MCP23008, OLAT, 0b10000000); // Set the GP7 high
+          setReg(MCP23008, OLAT, 0b00000000); // Set the GP7 low
       }
       else { // If the GP0 bit isn't high, then the LED (GP7) should be off
-          setReg(MCP23008, OLAT, 0b00000000); // Set the GP7 low
+          setReg(MCP23008, OLAT, 0b10000000); // Set the GP7 high
       }
       if (_CP0_GET_COUNT() > 12000000) { // Heartbeat
           if (NU32DIP_GREEN == 1) {
@@ -57,6 +58,7 @@ int main(void) {
           else {
               NU32DIP_GREEN = 1;
           }
+          _CP0_SET_COUNT(0);
       }
   }
 }
