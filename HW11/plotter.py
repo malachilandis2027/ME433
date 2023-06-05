@@ -24,13 +24,13 @@ plt.rcParams['toolbar'] = 'None'
 class Plotter:
     def __init__(self, ax):
         self.ax = ax
-        self.maxt = 250
+        self.maxt = 512
         self.tdata = [0]
         self.ydata = [0]
         self.line = Line2D(self.tdata, self.ydata)  
 
         self.ax.add_line(self.line)
-        self.ax.set_ylim(-1.5, 1.5)
+        self.ax.set_ylim(-0.05, 0.4)
         self.ax.set_xlim(0, self.maxt)
 
     def update(self, y):
@@ -69,16 +69,16 @@ def serial_getter():
 #    raise Exception("Ruh roh..no port specified!")
 
 # hard coded serial port name, timeout after 2 minutes
-ser = serial.Serial("COM3", 230400, timeout=120) # /dev/ttyUSB0
+ser = serial.Serial("COM3", 230400, timeout=120)
 
 fig, ax = plt.subplots()
 plotter = Plotter(ax)
 
 # ani = animation.FuncAnimation(fig, plotter.update, serial_getter, interval=1,blit=True, cache_frame_data=False)
-ani = animation.FuncAnimation(fig, plotter.update, serial_getter, interval=1,blit=True, save_count=10)
+ani = animation.FuncAnimation(fig, plotter.update, serial_getter, interval=1,blit=True, save_count=512)
 
-ax.set_xlabel("Samples")
-ax.set_ylabel("Data")
+ax.set_xlabel("Frequency [Hz]*10pi")
+ax.set_ylabel("Relative Amplitude")
 fig.canvas.manager.set_window_title('Plot Data [-1,1]')
 fig.tight_layout()
 plt.show()
