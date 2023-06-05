@@ -1,3 +1,6 @@
 # HW4
 ## My board layout:
-![schematic](Images/myBoard.png)
+![board](Images/myBoard.png)
+
+## My schematic:
+![schematic](Images/mySchematic.png)
